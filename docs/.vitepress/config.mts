@@ -31,7 +31,8 @@ export default defineConfig({
           text: '入门指南',
           items: [
             { text: '快速开始', link: '/guide/getting-started' },
-            { text: '高级用法', link: '/guide/advanced' }
+            { text: '高级用法', link: '/guide/advanced' },
+            { text: '新文章', link: '/guide/new-article' }  // ⭐ 添加新条目
           ]
         }
       ],
@@ -65,6 +66,6 @@ export default defineConfig({
     }
   },
 
-  // ⭐ 构建输出目录（Cloudflare Pages 默认读取）
+  // ⭐ 构建输出目录（Cloudflare Pages 默认读取） or ‘'../../dist'’
   outDir: '../dist'
 })
