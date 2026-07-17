@@ -3,9 +3,12 @@
 layout: home
 
 hero:
-  name: "My Awesome Docs"
-  text: "A VitePress site "
-  tagline: My great project tagline
+  name: "归至晨光拾阶行"
+  text: "DawnStair"
+  tagline: 晨光熹微踏阶行，一行一步一风景。
+  image:
+    src: logo-gz.png
+    alt: GZ(GuiZhi)
   actions:
     - theme: brand
       text: Markdown Examples
@@ -15,11 +18,29 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 晨光意象
+    icon: 🌅
+    details: 晨光是一天中最柔和的光线，不刺眼、不炽热，却足以照亮前行的每一级台阶。它代表着开始、希望与可能性。在光影交替的边界，事物刚刚显露出轮廓，尚未被正午的强光抹去棱角——那是一天之中最适合观察与出发的时刻。
+  
+  - title: 拾阶而行
+    icon: 🪜
+    details: 拾阶是一种朴素的行走方式，不跳跃、不飞跃，一步接一步地向上。每一级台阶都被认真踏过，没有哪一步可以被省略。这种节奏既不是急切的奔跑，也不是停滞的观望，而是一种稳定而持续的前进，带着对每一步的尊重与确认。
+  
+  - title: 归至之境
+    icon: 🧘
+    details: 归至指向一种返回本源的状态。它不是前进，也不是后退，而是向内收束、回到最朴素的出发点。在纷繁复杂之后，主动选择一种更简单、更纯粹的存在方式——不添加多余的东西，也不刻意减损什么，只是回到事物本来的样子。
+  
+  - title: 晨昏交界
+    icon: 🌄
+    details: 晨光出现的时刻，正是黑夜与白昼的交界。这个时刻充满张力——旧的事物尚未完全退去，新的事物正在生成。站在交界处的人，既看得见来路，也望得见去路。这种双重视野让人既保持清醒的回顾，又拥有开放的展望，不偏执于任何一端。
+  
+  - title: 步步生长
+    icon: 🌿
+    details: 拾阶而上的过程，本质上是持续累积的过程。每一级台阶都记录着一次迈步，每一次迈步都留下一个印记。台阶不会因为被踏过就消失，相反，它们构成了完整的路径。一个人走过的台阶越多，路径就越清晰，越能够被后来者看见和辨认。
+  
+  - title: 光阶同行
+    icon: ✨
+    details: 当晨光与台阶相遇，行走就不仅仅是行走——每一步都有了光的陪伴。光线勾勒出台阶的边缘，让路径变得清晰可辨；而台阶则将光线承接、折射，让光有了具体的形状和落点。行走者、光线与台阶三者共同构成了一幅完整而宁静的画面。
+
 ---
 
