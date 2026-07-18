@@ -43,7 +43,3 @@ features:
     icon: ✨
     details: 当晨光与台阶相遇，行走就不仅仅是行走——每一步都有了光的陪伴。光线勾勒出台阶的边缘，让路径变得清晰可辨；而台阶则将光线承接、折射，让光有了具体的形状和落点。行走者、光线与台阶三者共同构成了一幅完整而宁静的画面。
 ---
-
-<!--@include: ./guide/writting/parts/footer-show.md -->
-
-<ClockFlip/>

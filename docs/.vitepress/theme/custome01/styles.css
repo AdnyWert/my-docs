@@ -1,0 +1,595 @@
+/* 第一层：先读取框架默认值存入临时变量 */
+:root {
+  --vp-font-family-base-original: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+/* 第二层：重新覆盖修改字体 */
+:root {
+    /* 自定义样式 */
+    --font-family: 'Courier New', Consolas, 'Fira Code', 'Cascadia Code', monospace, '宋体';
+    --code-font-family: 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace, '宋体';
+
+    /* 拓展样式 */
+    --vp-font-family-base: var(--font-family), var(--vp-font-family-base-original); /* 普通文本字体 */
+    --vp-font-family-mono: var(--code-font-family); /* 代码字体 */
+    font-family: var(--vp-font-family-base);
+}
+
+div.VPDoc.has-sidebar.has-aside {
+  background-image:
+    linear-gradient(to bottom, var(--grid-line) 0 0.4px, transparent 0.4px),
+    linear-gradient(to right, var(--grid-line) 0 0.4px, transparent 0.4px);
+  background-size: 20px 20px, 20px 20px;
+    /* background-image 默认就是 repeat，这行可以删掉，冗余。 */
+  /*background-repeat: repeat;*/
+}
+
+:root {
+  /* 修复后的浅色网格背景（无bug精简版） */
+  /* --grid-line: #e5e5e5; */
+  --grid-line: #f0f0f0;
+  --grid-bg: #ffffff;
+
+  --vp-c-divider-i: #00bfa5;
+}
+.dark {
+  /* 深色模式低对比度网格线，不刺眼 */
+  --grid-line: #2a2a2a;
+  --grid-bg: #1a1a1a;
+
+  --vp-c-divider-i: #304d65;
+}
+
+/* doc内容页 目录左边框 */
+.content[data-v-3f9b8864] {
+  border-left: 2px solid var(--vp-c-divider-i);
+}
+
+/* doc 目录 移动线 */
+.outline-marker[data-v-3f9b8864] {
+
+}
+
+/* 目录链接 hover 悬浮样式 */
+.outline-link[data-v-f2fb6e01]:hover {
+  /* 圆角柔和 */
+  border-radius: 0 8px 8px 0;
+  /* 半透巧克力底色，降低刺眼度 */
+  background: rgba(210, 105, 30, 0.18);
+  /* 文字加深提亮 */
+  color: #d2691e;
+  /* 内边距撑开圆角区域 */
+  padding-inline: 8px;
+  /* 平滑过渡动画 */
+  transition: all 0.24s ease;
+  /* 轻微阴影增加层次感 */
+  box-shadow: 0 1px 4px rgba(210, 105, 30, 0.12);
+}
+
+/* 当前激活目录项 */
+.outline-link.active[data-v-f2fb6e01] {
+  border-radius: 0 8px 8px 0;
+  /* 激活态透明度更高，突出但不厚重 */
+  background: rgba(210, 105, 30, 0.28);
+  color: #c05810;
+  font-weight: 500;
+  padding-inline: 8px;
+  /* 左侧小竖线标识当前页，增强辨识度 */
+  border-left: 3px solid #d2691e;
+}
+
+
+
+/* 通用链接悬浮样式 */
+.is-link:hover {
+  border-radius: 8px;
+  /* 浅蓝半透明背景 */
+  background: rgba(41, 118, 227, 0.15);
+  color: #2976e3;
+  padding-inline: 5px;
+  transition: all 0.22s ease;
+  box-shadow: 0 1px 30px rgba(41, 118, 227, 0.1);
+}
+
+/* 激活选中状态 */
+.is-link.is-active.has-active {
+  border-radius: 0;
+  background: rgba(41, 118, 227, 0.25);
+  color: #1960c7;
+  font-weight: 500;
+  padding-inline: 5px;
+
+  /* 左侧蓝色竖条标记当前选中文章 */
+  border-right: 4px solid #2976e3;
+  box-shadow: 0 1px 4px rgba(41, 118, 227, 0.12);
+}
+
+/* 深色模式适配，提亮蓝色避免发灰 */
+:root.dark .is-link:hover {
+  background: rgba(70, 145, 245, 0.2);
+  color: #73b0ff;
+}
+:root.dark .is-link.is-active.has-active {
+  background: rgba(70, 145, 245, 0.3);
+  color: #94c4ff;
+  border-left-color: #509aff;
+}
+
+
+
+/* ========== H1 标题样式 紫色渐变中线向两侧扩散下边框 ========== */
+
+/* 紫色系全局主题变量 */
+:root {
+  --h1-main: #9c27b0;         /* 浅色主紫 */
+  --h1-light: #e1bee7;        /* 浅淡紫渐变 */
+  --h1-bg-light: rgba(156, 39, 176, 0.06);
+  --h1-text: #6a1b9a;         /* 浅色标题文字紫 */
+}
+.dark {
+  --h1-main: #ce93d8;         /* 暗色浅亮紫 */
+  --h1-light: rgba(186, 104, 200, 0.25);
+  --h1-bg-dark: rgba(206, 147, 216, 0.08);
+  --h1-text: #e1bee7;         /* 暗色柔和浅紫文字 */
+}
+
+.vp-doc h1 {
+  position: relative;
+  /* 文字居中 */
+  text-align: center;
+  /* 内外间距优化 */
+  margin: 3rem auto 2rem;
+  padding: 24px 16px 32px;
+  /* 字体样式 */
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--h1-text);
+  /* 柔和底色+圆角 */
+  background-color: var(--h1-bg-light);
+  border-radius: 12px;
+  /* 主题切换过渡 */
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+/* 暗色覆盖背景 */
+.dark .vp-doc h1 {
+  background-color: var(--h1-bg-dark);
+}
+
+/* 底部中线向两侧扩散的装饰线 */
+.vp-doc h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  width: 500px;
+  height: 3px;
+  border-radius: 3px;
+  /* 紫渐变线条 */
+  background: linear-gradient(90deg, transparent, var(--h1-main), transparent);
+  /* 初始缩放到中间一条细线 */
+  transform: translateX(-50%) scaleX(0.5);
+  transform-origin: center;
+  transition: transform 0.35s ease-out;
+}
+
+/* hover 线条从中间向两边完全展开 */
+.vp-doc h1:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* hover 标题轻微提亮增强交互 */
+.vp-doc h1:hover {
+  filter: brightness(1.04);
+}
+.dark .vp-doc h1:hover {
+  filter: brightness(1.12);
+}
+
+
+/* h2 全局主题变量统一配色，绿色系 */
+:root {
+  --h2-primary: #00bfa5;    /* 主青绿 */
+  --h2-light: #b2dfdb;      /* 浅青绿（浅色渐变） */
+  --h2-bg-light: rgba(0, 191, 165, 0.07); /* 浅色背景淡绿 */
+  --h2-text: #00897b;       /* 浅色标题绿色文字 */
+}
+.dark {
+  --h2-primary: #00d1b5;    /* 暗色提亮主青绿 */
+  --h2-light: rgba(26, 75, 70, 0.4); /* 暗色渐变暗绿透明 */
+  --h2-bg-dark: rgba(0, 209, 181, 0.1); /* 暗色淡绿底色 */
+  --h2-text: #80e8d8;       /* 暗色柔和浅绿文字 */
+}
+
+.vp-doc h2 {
+  position: relative;
+  /* 上下内边距放大，底部预留分割线空间，左侧给三角留白 */
+  padding: 18px 16px 20px 36px;
+  margin: 2.4rem 0 1.2rem;
+  color: var(--h2-text);
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-radius: 0 8px 8px 0;
+  background-color: var(--h2-bg-light);
+  /* 左侧绿色实心三角标识 */
+  background-image: radial-gradient(circle at 0% 50%,
+    var(--h2-primary) 0%,
+    var(--h2-primary) 30%,
+    transparent 30%, transparent 100%);
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 24px 24px;
+
+  /* 主题切换平滑过渡 */
+  transition: color 0.25s ease, background 0.25s ease;
+  /* 标题自身过渡 */
+  /*transition: color 0.3s ease, background-color 0.3s ease;*/
+}
+/* 暗色单独覆盖背景底色 */
+.dark .vp-doc h2 {
+  background-color: var(--h2-bg-dark);
+}
+
+/* 底部渐变分割线修复拉长渐变区间，过渡自然 */
+.vp-doc h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+
+  /* 默认短渐变 */
+  background: linear-gradient(to right, var(--h2-primary) 6%, var(--h2-light) 24%);
+  /* 开启过渡，控制宽度/渐变相关动画 */
+  transition: all .3s ease;
+  /* 用transform做拉伸过渡更流畅 */
+  transform: scaleX(0.7);
+  transform-origin: left center;
+}
+
+.vp-doc h2:hover::after{
+  /* hover 完整展开 */
+  filter: brightness(1.05);
+  transform: scaleX(1);
+  background: linear-gradient(to right, var(--h2-primary) 6%, var(--h2-light) 80%);
+}
+
+
+/* h3 全局统一配色变量，浅色默认 */
+:root {
+  --h3-border: #0066bf;
+  --h3-text: #0066bf;
+  --h3-bg-light: rgba(0, 102, 191, 0.06);
+}
+/* 匹配页面 class="dark" 暗色主题 */
+.dark {
+  --h3-border: #42a5f5;
+  --h3-text: #64b5f6;
+  --h3-bg-dark: rgba(66, 165, 245, 0.12);
+}
+
+.vp-doc h3 {
+  /* 间距优化，拉开章节层级 */
+  margin: 1.6rem 0 0.8rem;
+  padding: 8px 12px 8px 14px;
+  font-weight: 600;
+  font-size: 1.25rem;
+  /* 左侧蓝色粗竖线 */
+  border-left: 4px solid var(--h3-border);
+  color: var(--h3-text);
+  /* 浅色模式轻微底色衬托标题 */
+  background: var(--h3-bg-light);
+  /* 主题切换平滑过渡 */
+  transition: all 0.24s ease;
+  border-radius: 0 6px 6px 0;
+}
+/* 暗色单独覆盖背景色 */
+.dark .vp-doc h3 {
+  background: var(--h3-bg-dark);
+}
+/* 轻微hover提升交互质感 */
+.vp-doc h3:hover {
+  filter: brightness(1.2);
+}
+.dark .vp-doc h3:hover {
+  filter: brightness(1.2);
+}
+
+
+/* ========== H4 标题样式 ========== */
+/* 橙色系全局变量，统一管理 */
+:root {
+  --h4-accent: #f57c00;     /* 主橙色边框 */
+  --h4-text: #e65100;       /* 浅色标题文字橙 */
+  --h4-bg-light: rgba(245, 124, 0, 0.07);
+}
+.dark {
+  --h4-accent: #ffb74d;     /* 暗色柔和浅橙 */
+  --h4-text: #ffcc80;       /* 暗色文字浅暖橙 */
+  --h4-bg-dark: rgba(255, 183, 77, 0.1);
+}
+
+.vp-doc h4 {
+  position: relative;
+  margin: 1.4rem 0 0.7rem;
+  padding: 10px 14px 10px 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  /* 左侧橙色竖边框 */
+  border-left: 5px solid var(--h4-accent);
+  color: var(--h4-text);
+  background-color: var(--h4-bg-light);
+  border-radius: 0 6px 6px 0;
+  /* 全局过渡：文字、底色、边框色 */
+  transition: all 0.28s ease;
+}
+/* 暗色覆盖背景 */
+.dark .vp-doc h4 {
+  background-color: var(--h4-bg-dark);
+}
+
+/* hover 交互提亮 */
+.vp-doc h4:hover {
+  filter: brightness(1.06);
+}
+.dark .vp-doc h4:hover {
+  filter: brightness(1.15);
+}
+
+/*== p /h1/h2/h3/h4 统一 hover 橘黄高亮，明暗双主题，可覆盖原有标题背景 ==*/
+
+/* 橘黄色高亮主题变量 */
+:root {
+  --hover-orange: rgba(255, 152, 0, 0.09);
+  --hover-orange-border: rgba(255, 152, 0, 0.22);
+}
+.dark {
+  --hover-orange: rgba(255, 179, 70, 0.13);
+  --hover-orange-border: rgba(255, 179, 70, 0.28);
+}
+
+div > p, .vp-doc h3, .vp-doc h4 {
+  transition: background-color 0.24s ease, border-left-color 0.24s ease;
+  border-radius: 0px 6px 6px 0;
+}
+
+div > p:hover,
+.vp-doc h3:hover,
+.vp-doc h4:hover {
+  background-color: var(--hover-orange);
+  border-left-color: var(--hover-orange-border);/* !important; */
+}
+
+
+/* h1~h4:hover 样式定义 */
+/* ========== 公共：所有标题统一 before 基础样式（已优化） ========== */
+.vp-doc h1::before,
+.vp-doc h2::before,
+.vp-doc h3::before,
+.vp-doc h4::before {
+  content: "";
+  position: absolute;
+  left: -48px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-12px);
+  /* 固定宽高32px正方形，取消自适应padding */
+  width: 32px;
+  height: 32px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  /*place-items: center;*/
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.24s ease;
+  /* 默认背景透明，hover才上色 */
+  background: transparent;
+}
+/* hover 滑入显示 */
+.vp-doc h1:hover::before,
+.vp-doc h2:hover::before,
+.vp-doc h3:hover::before,
+.vp-doc h4:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ========== 单独分级配置 before 背景+文字色（复用现有变量） ========== */
+/* H1 紫色 */
+.vp-doc h1::before {
+  content: "H1";
+  color: var(--h1-text);
+}
+.vp-doc h1:hover::before {
+  background: var(--h1-bg-light);
+  border: 1px solid var(--h1-main);
+}
+.dark .vp-doc h1:hover::before {
+  background: var(--h1-bg-dark);
+}
+
+/* H2 青绿 */
+.vp-doc h2::before {
+  content: "H2";
+  color: var(--h2-text);
+}
+.vp-doc h2:hover::before {
+  background: var(--h2-bg-light);
+  border: 1px solid var(--h2-primary);
+}
+.dark .vp-doc h2:hover::before {
+  background: var(--h2-bg-dark);
+}
+
+/* H3 蓝色 */
+.vp-doc h3::before {
+  content: "H3";
+  color: var(--h3-text);
+}
+.vp-doc h3:hover::before {
+  background: var(--h3-bg-light);
+  border: 1px solid var(--h3-border);
+}
+.dark .vp-doc h3:hover::before {
+  background: var(--h3-bg-dark);
+}
+
+/* H4 橙色 */
+.vp-doc h4::before {
+  content: "H4";
+  color: var(--h4-text);
+}
+.vp-doc h4:hover::before {
+  background: var(--h4-bg-light);
+  border: 1px solid var(--h4-accent);
+}
+.dark .vp-doc h4:hover::before {
+  background: var(--h4-bg-dark);
+}
+
+
+/*  代码行 hover 高亮（褐色系）完整样式，适配浅色 / 暗色，仅作用 pre code 代码块 */
+
+/* 褐色系主题变量，统一管理 */
+:root {
+  --code-line-hover: rgba(160, 82, 45, 0.12); /* 浅褐色高亮 */
+  --code-line-border: rgba(160, 82, 45, 0.5);
+}
+.dark {
+  --code-line-hover: rgba(194, 124, 80, 0.15); /* 暗色柔和暖褐 */
+  --code-line-border: rgba(194, 124, 80, 0.5);
+}
+
+pre code .line {
+  /* 每行基础布局，给hover留出圆角空间 */
+  display: inline-block;
+  width: max(100%);
+  padding-inline: 12px;
+  margin-inline: -12px;
+  border-radius: 4px 0 0 4px;
+  /* 平滑过渡高亮底色 */
+  transition: background-color 0.22s ease;
+}
+
+pre code .line:hover {
+  background-color: var(--code-line-hover);
+  /* 左侧细微褐色边线增强层次感 */
+  border-right: 3px solid var(--code-line-border);
+}
+
+/*== p strong 加粗标签样式（紫色渐变底、明暗双主题、精致美化） ==*/
+p strong {
+  font-weight: 800;
+  --markAnswerBg: rgba(111, 75, 250, .12);
+  background: linear-gradient(to right, var(--markAnswerBg), var(--markAnswerBg)) no-repeat center bottom;
+}
+/* 全局紫色标记变量，明暗分离 */
+:root {
+  --mark-purple: rgba(111, 75, 250, 0.12);
+  --mark-purple-line-top: rgba(111, 75, 250, 0.05);
+  --mark-purple-line-bttom: rgba(111, 75, 250, 0.28);
+}
+.dark {
+  --mark-purple: rgba(138, 105, 255, 0.18);
+  --mark-purple-line-top: rgba(160, 135, 255, 0.15);
+  --mark-purple-line-bttom: rgba(160, 135, 255, 0.55);
+}
+
+p strong {
+  font-weight: 800;
+  /* 上下微小留白，避免文字贴住渐变色块 */
+  padding: 2px 4px;
+  /* 渐变高度，模拟底部高亮划线 */
+  background-size: 100% 70%;
+  background-image: linear-gradient(to bottom,
+    var(--mark-purple-line-top), var(--mark-purple-line-bttom));
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  /* 主题切换平滑过渡 */
+  transition: background 0.24s ease;
+  /*border-bottom: ;*/
+}
+
+
+/*== ==高亮显示：mark 高亮标签完整优化（黄色系、明暗双主题、精致美化） ==*/
+/* mark 高亮全局变量，明暗区分 */
+:root {
+  --mark-yellow-bg: rgba(248, 206, 64, 0.2);
+  --mark-yellow-border: #f8ce40;
+}
+.dark {
+  --mark-yellow-bg: rgba(248, 206, 64, 0.14);
+  --mark-yellow-border: #ffdd55;
+}
+
+mark {
+  padding: 3px 6px 2px;
+  border-radius: 4px 4px 0 0;
+  color: var(--vp-c-text-1);
+  background-color: var(--mark-yellow-bg);
+  border-bottom: 2px solid var(--mark-yellow-border);
+  /* 平滑过渡主题切换、hover变化 */
+  transition: background-color 0.24s ease, border-color 0.24s ease;
+}
+
+/* hover 轻微加深高亮，交互反馈 */
+mark:hover {
+  background-color: rgba(248, 206, 64, 0.28);
+}
+.dark mark:hover {
+  background-color: rgba(248, 206, 64, 0.22);
+}
+
+/*== 代码块右上角提示 编程语言 ==*/
+.vp-doc [class*='language-'] > span.lang {
+  color: unset;
+  font-size: 16px;
+  font-family: "Fira Code", "Courier New B", math;
+}
+
+/*== a:hover 样式设置 ==*/
+/* 段落内链接主题变量 */
+:root {
+  --p-link-color: #0066cc;
+  --p-link-underline: #0066cc;
+  --p-link-hover-bg: rgba(0, 102, 204, 0.08);
+}
+.dark {
+  --p-link-color: #63b8ff;
+  --p-link-underline: #82c1ff;
+  --p-link-hover-bg: rgba(99, 184, 255, 0.14);
+}
+
+.vp-doc p a {
+  position: relative;
+  color: var(--p-link-color);
+  text-decoration-color: var(--p-link-color);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: auto;
+
+  padding: 2px 4px;
+  border-radius: 4px 4px 0 0;
+  transition: color 0.24s ease, background 0.24s ease;
+}
+
+
+.vp-doc p a:hover {
+  background-color: var(--p-link-hover-bg);
+  text-decoration: none;
+
+  border-bottom: var(--p-link-color) 2px solid;
+}
+

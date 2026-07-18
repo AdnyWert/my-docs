@@ -1,9 +1,15 @@
 import { defineConfig } from 'vitepress'
+import markdownItMark from 'markdown-it-mark'
 
 export default defineConfig({
   // 站点标题
   title: '归至的知识积累',
   description: '知识分享',
+  // 设置网站图标
+  head: [
+    ['link', {rel: 'icon', href: '/public/banana.svg'}],
+    // ['link', {rel: 'icon', href: '/banana.svg'}],
+  ],
 
 
   // ⭐ 关键：如果部署到子路径，需要设置 base
@@ -22,6 +28,7 @@ export default defineConfig({
     siteTitle: "归至",
     // 站点首页 icon
     logo: 'banana.svg',
+    // logo: 'logo-gz.png',
 
     // 导航栏
     nav: [
@@ -40,8 +47,8 @@ export default defineConfig({
     // ⭐ 左侧侧边栏（文档目录）
     sidebar: {
 
-
-      '/guide/': [{
+      '/guide/': [
+        {
           text: '入门指南',
           items: [
             { text: '快速开始', link: '/guide/getting-started' },
@@ -52,6 +59,8 @@ export default defineConfig({
           text: "写作",
           items: [
             { text: 'Markdown 扩展', link: '/guide/writting/Markdown 扩展.md' },
+            { text: '在 Markdown 中使用 Vue', link: '/guide/writting/在 Markdown 中使用 Vue.md' },
+            { text: 'VitePress 自定义组件样式', link: '/guide/writting/VitePress 自定义组件样式.md' },
           ]}
       ],
       '/api/': [
@@ -62,17 +71,13 @@ export default defineConfig({
           ]
         }
       ],
-
-
-
-      '/codex/advanced/': [{
-        text: '高级篇',
-        items: [
-          { text: '高级篇2完整教程', link: '/codex/advanced/Codex 使用指南（高级篇2·指令_Agent_Model_Skills 全解手册）.md' },
-        ]
+      '/codex/advanced/': [
+        {
+          text: '高级篇',
+          items: [
+            { text: '高级篇2完整教程', link: '/codex/advanced/Codex 使用指南（高级篇2·指令_Agent_Model_Skills 全解手册）.md' },
+          ]
       }],
-
-
       '/codex/': [
         {
           text: 'Codex 使用教学',
@@ -125,7 +130,35 @@ export default defineConfig({
     // 页脚授权
     footer: {
       message: '归至而行，初心一道.',
-      copyright: 'Copyright © 2026.07.17 @guizhi. All rights reserved  | 渝ICP备2026005423号-1'
+      copyright: `Copyright © 2026.07.17-${ new Date().getFullYear() } @guizhi. All rights reserved  | 渝ICP备2026005423号-1`,
+    },
+    // 最后更新时间
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        era: "narrow",
+      },
+    },
+    // 文档页脚
+    docFooter: {
+      prev: '上一页',
+    },
+
+    // 中文配置
+    langMenuLabel: "多语言",
+    returnToTopLabel: "回到顶部",
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: "切换到浅色模式",
+    // outlineTitle: '页面导航', // 已过时
+    outline: {
+      label: '页面目录', level: 'deep', // 2级标题+
     }
   },
 
@@ -145,10 +178,14 @@ export default defineConfig({
     image: {
       // 默认禁用；设置为 true 可为所有图片启用懒加载。
       lazyLoading: true
+    },
+    config(md) {
+      md.use(markdownItMark)
     }
   },
 
   // ⭐ 构建输出目录（Cloudflare Pages 默认读取） or ‘'../../dist'’
-  outDir: '../dist'
+  outDir: '../dist',
+
 })
 
