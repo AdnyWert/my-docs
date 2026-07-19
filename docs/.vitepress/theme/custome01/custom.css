@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* 自定义全局页脚间距 */
+.custom-footer {
+  padding: 24px 16px 32px;
+  border-top: 1px solid var(--p-link-color, blue);
+  // margin-top: 2rem;
+}
+
+.runtime-text {
+  letter-spacing: 0.5px;
+}

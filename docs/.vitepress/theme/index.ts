@@ -22,8 +22,12 @@ import PromoteBanner from './components/PromoteBanner.vue'
 import './custome01/custom.css' // 直接导入不行：import 'tailwindcss'
 
 // 引入头像组件
-// @ts-ignore
+//@ts-ignore
 import UserAvatar from './components/UserAvatar.vue'
+
+// 导入计时组件
+// @ts-ignore
+import SiteRuntime from './components/SiteRuntime.vue'
 
 export default {
   extends: DefaultTheme,
@@ -34,6 +38,18 @@ export default {
       'doc-footer-before': () => h(PromoteBanner),
       // 使用插槽显示头像组件
       'nav-bar-content-after': () => h(UserAvatar),
+      // 'layout-bottom': () => h(SiteRuntime),
+      // 全局自定义页脚插槽，替换默认footer
+      'layout-bottom': () => h('div', { class: 'custom-footer' }, [
+        // 1. 运行计时组件
+        h('p', { class: 'text-center text-gray-600 dark:text-gray-400 my-2' }, '归至而行，初心一道.'),
+        // 2. 自定义标语
+        h(SiteRuntime),
+        // 3. 版权 + ICP
+        h('p', { class: 'text-center text-gray-600 dark:text-gray-500 leading-relaxed' },
+          `Copyright © 2026.07.17-${new Date().getFullYear()} @guizhi. All rights reserved  | 渝ICP备2026005423号-1`
+        )
+      ])
     })
   },
   enhanceApp({ app, router, siteData }) {

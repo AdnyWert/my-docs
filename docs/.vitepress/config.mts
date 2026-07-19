@@ -61,30 +61,23 @@ export default defineConfig({
 
     // 搜索
     search: {
-      provider: 'local'
+      provider: 'local',
     },
     // 页脚授权
-    footer: {
-      message: '归至而行，初心一道.',
-      copyright: `Copyright © 2026.07.17-${ new Date().getFullYear() } @guizhi. All rights reserved  | 渝ICP备2026005423号-1`,
-    },
+    // footer: {
+    //   message: '归至而行，初心一道.',
+    //   copyright: `Copyright © 2026.07.17-${ new Date().getFullYear() } @guizhi. All rights reserved  | 渝ICP备2026005423号-1`,
+    // },
     // 最后更新时间
+    // 文章跟新时间显示格式
     lastUpdated: {
-      text: '最后更新于',
-      formatOptions: {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        era: "narrow",
+      text: '最后更新于', formatOptions: {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', era: "narrow",
       },
     },
     // 文档页脚
-    docFooter: {
-      prev: '上一页',
-    },
+    docFooter: { prev: '上一页', },
 
     // 中文配置
     langMenuLabel: "多语言",
