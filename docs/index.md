@@ -8,7 +8,7 @@ hero:
   text: "DawnStair"
   tagline: 晨光熹微踏阶行，一行一步一风景。
   image:
-    src: logo-gz.png
+    src: static/image/logo-gz.png
     alt: GZ(GuiZhi)
   actions:
     - theme: brand

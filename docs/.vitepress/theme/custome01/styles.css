@@ -43,17 +43,13 @@ div.VPDoc.has-sidebar.has-aside {
 }
 
 /* doc内容页 目录左边框 */
-.content[data-v-3f9b8864] {
+.has-outline .content {
   border-left: 2px solid var(--vp-c-divider-i);
 }
 
-/* doc 目录 移动线 */
-.outline-marker[data-v-3f9b8864] {
-
-}
 
 /* 目录链接 hover 悬浮样式 */
-.outline-link[data-v-f2fb6e01]:hover {
+.outline-link:hover {
   /* 圆角柔和 */
   border-radius: 0 8px 8px 0;
   /* 半透巧克力底色，降低刺眼度 */
@@ -69,7 +65,7 @@ div.VPDoc.has-sidebar.has-aside {
 }
 
 /* 当前激活目录项 */
-.outline-link.active[data-v-f2fb6e01] {
+.outline-link.active {
   border-radius: 0 8px 8px 0;
   /* 激活态透明度更高，突出但不厚重 */
   background: rgba(210, 105, 30, 0.28);
@@ -353,11 +349,15 @@ div.VPDoc.has-sidebar.has-aside {
   --hover-orange-border: rgba(255, 179, 70, 0.28);
 }
 
+
 div > p, .vp-doc h3, .vp-doc h4 {
   transition: background-color 0.24s ease, border-left-color 0.24s ease;
   border-radius: 0px 6px 6px 0;
 }
 
+blockquote > p:hover,
+ol > li:hover, ul > li:hover,
+.custom-block.details summary:hover,
 div > p:hover,
 .vp-doc h3:hover,
 .vp-doc h4:hover {

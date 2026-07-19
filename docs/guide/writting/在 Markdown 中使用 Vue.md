@@ -1,9 +1,10 @@
 ---
 layout: doc
 title: Markdown 中使用 Vue
-
+auther: LuminKi
 date: 2026-07-18 08:20:23
 lastUpdated: 2026-07-18T08:20:23.234
+
 ---
 
 # 在 Markdown 中使用 Vue

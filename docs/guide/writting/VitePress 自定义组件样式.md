@@ -103,7 +103,7 @@ VitePress系列教程：内容展示优化#5
 2、安装vue，因为需要使用vue提供的h方法
 
 ```bash
- npm add vue-D
+ npm add vue -D
 ```
 
 3、在`theme/index.ts`中使用插槽
