@@ -1,5 +1,5 @@
-/** Codex 模块侧边栏 */
-const codexRoot = [
+/** Codex 业务模块：下拉导航 + 多级侧边栏 */
+const codexRootSidebar = [
   {
     text: 'Codex 使用教学',
     items: [
@@ -22,7 +22,7 @@ const codexRoot = [
   }
 ]
 
-const codexAdvanced = [
+const codexAdvancedSidebar = [
   {
     text: '高级篇',
     items: [
@@ -31,7 +31,25 @@ const codexAdvanced = [
   }
 ]
 
+import type { DefaultTheme } from 'vitepress'
+
+// 显式定义类型
+const codexNavItem: DefaultTheme.NavItem = {
+  text: 'Codex',
+  items: [
+    { text: "Codex 基础", link: 'codex/basic' },
+    {
+      items: [
+        { text: "Codex 高阶", link: 'codex/advanced' }
+      ]
+    },
+  ]
+}
+
 export default {
-  root: codexRoot,
-  advanced: codexAdvanced
+  navItem: codexNavItem,
+  sidebarMap: {
+    '/codex/': codexRootSidebar,
+    '/codex/advanced/': codexAdvancedSidebar
+  }
 }

@@ -3,8 +3,9 @@ import markdownItMark from 'markdown-it-mark'
 // @ts-ignore
 import tailwind from '@tailwindcss/vite'
 
-// 引入侧边栏获取方法
-import { getSidebar } from './sidebar/index'
+
+// 引入自动生成导航、侧边栏的工具函数
+import { getNav, getSidebar } from './modules'
 
 export default defineConfig({
   // 站点标题
@@ -39,83 +40,9 @@ export default defineConfig({
     logo: '/static/image/banana.svg',
 
     // 导航栏
-    nav: [
-      { text: '首页', link: "/",  },
-      { text: 'VitePress', link: 'guide/getting-started' },
-      { text: 'API', link: '/api/' },
-      { text: 'Codex', items: [
-          { text: "Codex 基础", link: '/codex/basic/' },
-          // 带分隔线的 选项菜单
-          { items: [
-              { text: "Codex 高阶", link: '/codex/advanced/' }
-            ] },
-        ]},
-    ],
-
-    // ⭐ 左侧侧边栏（文档目录）
-    sidebar: {
-      '/guide/': [
-        {
-          text: '入门指南',
-          link: 'baidu.com',
-          items: [
-            { text: '快速开始', link: '/guide/getting-started' },
-            { text: '进阶篇', link: '/guide/intermediate.md' },
-            { text: '高级篇', link: '/guide/advanced' } // ⭐ 添加新条目
-          ]
-        },{
-          text: "写作",
-          items: [
-            { text: 'Markdown 扩展', link: '/guide/writting/Markdown 扩展.md' },
-            { text: '在 Markdown 中使用 Vue', link: '/guide/writting/在 Markdown 中使用 Vue.md' },
-            { text: 'VitePress 自定义组件样式', link: '/guide/writting/VitePress 自定义组件样式.md' },
-            { text: 'VitePress 自定义页面', link: '/guide/writting/VitePress 自定义页面.md' },
-          ]}
-      ],
-      '/api/': [
-        {
-          text: 'API 文档',
-          items: [
-            { text: '概述', link: '/api/' }
-          ]
-        }
-      ],
-      '/codex/advanced/': [
-        {
-          text: '高级篇',
-          items: [
-            { text: '高级篇2完整教程', link: '/codex/advanced/Codex 使用指南（高级篇2·指令_Agent_Model_Skills 全解手册）.md' },
-          ]
-      }],
-      '/codex/': [
-        {
-          text: 'Codex 使用教学',
-          items: [
-            { text: '入门篇', link: '/codex/Codex 使用指南（基础篇·教科书完整版）.md'},
-            { text: '进阶篇', link: '/codex/Codex 使用指南（进阶篇·教科书完整版）.md'},
-            // 一级子项：高级篇分类，内含嵌套三级子页面
-            {
-              text: 'Codex 高级篇',
-              items: [
-                { text: '高级篇完整教程', link: '/codex/advanced/Codex 使用指南（高级篇·教科书完整版）.md' },
-                { text: '高级篇2完整教程', link: '/codex/advanced/Codex 使用指南（高级篇2·指令_Agent_Model_Skills 全解手册）.md' },
-                // 在这里继续添加更多高级篇子页面，示例：
-                // { text: '自定义指令', link: '/codex/advanced/custom.md' },
-                // { text: '性能优化', link: '/codex/advanced/optimize.md' },
-              ]
-            }
-          ]
-        },
-        // 单独分组
-        {
-          text: 'Codex 查表',
-          items: [
-            { text: '斜杠指令极简速查表', link: '/codex/lookup/Codex-CLI v0.142.0 斜杠指令极简速查表' },
-            // 高级篇更多子页面放这里
-          ]
-        }
-      ],
-    },
+    nav: getNav(),
+    // 自动合并所有模块侧边栏
+    sidebar: getSidebar(),
 
     // 右侧文章目录（自动生成，无需配置）
     // VitePress 会自动提取 h2/h3 作为右侧目录

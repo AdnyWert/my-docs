@@ -4,7 +4,7 @@ import markdownItMark from 'markdown-it-mark'
 import tailwind from '@tailwindcss/vite'
 
 // 引入侧边栏获取方法
-import { getSidebar } from './sidebar/index'
+import { getSidebar } from './modules/index'
 
 export default defineConfig({
   // 站点标题
