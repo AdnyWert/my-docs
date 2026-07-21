@@ -5,9 +5,9 @@
       <!-- 头像触发器 -->
       <div class="avatar-box w-9 h-9 rounded-full overflow-hidden border-2 border-transparent hover:border-indigo-400 transition-all">
         <img
-          v-if="isLogin"
-          :src="avatarUrl"
-          alt="用户头像"
+          v-if="userStore.token"
+          :src="userStore.userInfo?.avatar? userStore.userInfo.avatar:avatarUrl"
+          alt="头像"
           class="w-full h-full object-cover"
         />
         <div v-else class="w-full h-full flex items-center justify-center text-xl bg-gray-100  text-gray-500 dark:text-gray-300">
@@ -19,54 +19,45 @@
       <template #dropdown>
         <el-dropdown-menu>
           <!-- 未登录：仅登录 -->
-          <!-- <el-dropdown-item v-if="!isLogin" @click="$router.push('/login')"> -->
-          <el-dropdown-item v-if="!isLogin" @click="handleSimLogin">
+          <el-dropdown-item v-if="!userStore.token" @click="openLogin">
             登录
           </el-dropdown-item>
           <!-- 已登录：账号设置 + 退出 -->
           <template v-else>
             <el-dropdown-item @click="$router.push('/account')">账号设置</el-dropdown-item>
-            <el-dropdown-item divided @click="handleLogout">退出登录</el-dropdown-item>
+            <el-dropdown-item divided @click="userStore.logout">退出登录</el-dropdown-item>
           </template>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+    <LoginModal ref="loginModalRef" />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vitepress'
 
-const router = useRouter()
+import { ref, onMounted } from 'vue'
+import { useUserStore } from '../stores/userStore'
+import LoginModal from './LoginModal.vue'
+
+const userStore = useUserStore()
+const loginModalRef = ref(null)
+
+// 页面加载读取本地登录标识
+onMounted(() => {
+  userStore.restoreUser()
+})
+
 // const avatarUrl = ref('https://picsum.photos/id/64/100/100')
 const avatarUrl = ref('https://picsum.photos/200/300')
 // const avatarUrl = ref('static/image/apple.svg')
 
-// 登录状态持久化
-const isLogin = ref(false)
-
-// 页面加载读取本地登录标识
-onMounted(() => {
-  const token = localStorage.getItem('user_token')
-  if (token) isLogin.value = true
-})
-
-// 模拟一键登录
-const handleSimLogin = () => {
-  // 存入标识，模拟登录成功
-  localStorage.setItem('user_token', 'mock-login-token-001')
-  isLogin.value = true
+const openLogin = () => {
+  loginModalRef.value.visible = true
 }
 
-// 退出登录逻辑
-const handleLogout = () => {
-  localStorage.removeItem('user_token')
-  localStorage.removeItem('user_info')
-  isLogin.value = false
-  // router.push('/')
-}
 </script>
+
 
 <style scoped>
 .user-avatar-wrap {

@@ -1,3 +1,13 @@
+import { loadEnv } from 'vite'
+// 1. 获取当前执行目录（项目根目录）
+const root = process.cwd()
+// 2. 区分开发/生产环境，加载对应.env文件
+const env = loadEnv('development', root, 'VITE_')
+// 取出目标地址变量
+const VITE_API_TARGET = env.VITE_API_TARGET
+
+
+
 import { defineConfig } from 'vitepress'
 import markdownItMark from 'markdown-it-mark'
 // @ts-ignore
@@ -6,6 +16,10 @@ import tailwind from '@tailwindcss/vite'
 
 // 引入自动生成导航、侧边栏的工具函数
 import { getNav, getSidebar } from './modules'
+
+
+
+
 
 export default defineConfig({
   // 站点标题
@@ -17,9 +31,18 @@ export default defineConfig({
   ],
   // ,
   vite: {
-    plugins: [
-      tailwind(),
-    ]
+    server: {
+      proxy: VITE_API_TARGET
+          ? {
+            '/api': {
+              target: VITE_API_TARGET,
+              changeOrigin: true,
+              rewrite: (path) => path.replace(/^\/api/, '')
+            }
+          }
+          : {}
+    },
+    plugins: [tailwind()],
   },
 
   // ⭐ 关键：如果部署到子路径，需要设置 base

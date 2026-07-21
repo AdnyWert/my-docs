@@ -5,7 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import './custome01/styles.css'
 
-import ElementPlus from 'element-plus'
+import ElementPlus, {ElMessage} from 'element-plus'
 // 全局引入Element Plus完整样式
 import 'element-plus/dist/index.css'
 // Element Plus 暗黑主题，自动跟随页面dark类切换
@@ -28,6 +28,10 @@ import UserAvatar from './components/UserAvatar.vue'
 // 导入计时组件
 // @ts-ignore
 import SiteRuntime from './components/SiteRuntime.vue'
+
+import { createPinia } from 'pinia'
+const pinia = createPinia()
+
 
 export default {
   extends: DefaultTheme,
@@ -53,10 +57,13 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    app.component("Counter", Counter),
-    app.component("ClockFlip", ClockFlip),
+    app.component("Counter", Counter)
+    app.component("ClockFlip", ClockFlip)
     // 全局挂载ElementPlus，全局所有md页面、自定义组件均可直接使用el-xxx组件
     app.use(ElementPlus)
+    app.use(pinia) // 全局注册 Pinia
+    // 全局挂载，任意组件直接使用 $message
+    app.config.globalProperties.$message = ElMessage
     // ...
   }
 } satisfies Theme
